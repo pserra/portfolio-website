@@ -58,8 +58,13 @@ type Params = {
   }
 }
 
+type Post = {
+  title: string,
+  body: string
+}
+
 export async function getStaticProps({ params }: Params) {
-  const post = getPostBySlug(params.slug, [
+  const post = await getPostBySlug(params.slug, [
     'title',
     'date',
     'slug',
@@ -68,6 +73,7 @@ export async function getStaticProps({ params }: Params) {
     'ogImage',
     'coverImage',
   ])
+
   const content = await markdownToHtml(post.content || '')
 
   return {
@@ -81,8 +87,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(['slug'])
-
+  const posts = await getAllPosts(['slug'])
   return {
     paths: posts.map((post) => {
       return {
