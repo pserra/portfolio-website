@@ -3,7 +3,6 @@ import matter from 'gray-matter'
 
 export async function getPostSlugs() {
   const { rows } = await sql`SELECT slug, created FROM post`;
-  console.log(rows)
   return rows
 }
 
@@ -13,7 +12,6 @@ export async function getRemotePost({
   params: { slug: string }
 }) {
   const { rows } = await sql`SELECT * FROM post WHERE slug=${params.slug}`;
-  console.log(rows)
   return rows[0]
 }
 
@@ -47,7 +45,6 @@ export async function getPostBySlug(slug: string, fields: string[] = []) {
 
 export async function getAllPosts(fields: string[] = []) {
   const slugs = await getPostSlugs();
-  console.log("THIS", slugs)
   let posts = []
   for(let slug of slugs) {
     const post = await getPostBySlug(slug.slug, fields)
