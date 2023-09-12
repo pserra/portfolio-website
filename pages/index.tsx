@@ -18,9 +18,6 @@ export default function Index({ allPosts }: Props) {
   return (
     <>
       <Layout>
-        <Head>
-          <title>{`${AUTHOR_NAME}'s Portfolio`}</title>
-        </Head>
         <Container>
           <Intro />
           {heroPost && (
