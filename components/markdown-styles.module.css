@@ -2,6 +2,14 @@
   @apply text-lg leading-relaxed;
 }
 
+.markdown a {
+  @apply underline text-blue-500;
+}
+
+.markdown a:hover {
+  @apply underline text-blue-400;
+}
+
 .markdown p,
 .markdown ul,
 .markdown ol,
